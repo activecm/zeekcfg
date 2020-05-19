@@ -1,0 +1,14 @@
+before:
+  hooks:
+    - go mod download
+
+archives:
+  - format: binary
+
+builds:
+  - goarch:
+    - amd64
+    - arm64
+  - ignore:
+    - goos: darwin
+      goarch: arm64
