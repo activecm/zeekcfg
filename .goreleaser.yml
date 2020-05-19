@@ -6,9 +6,10 @@ archives:
   - format: binary
 
 builds:
-  - goarch:
+  - 
+    goarch:
     - amd64
     - arm64
-  - ignore:
+    ignore:
     - goos: darwin
       goarch: arm64
