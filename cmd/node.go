@@ -11,6 +11,7 @@ import (
 	"strings"
 
 	"github.com/AlecAivazis/survey/v2"
+	"github.com/AlecAivazis/survey/v2/terminal"
 	"github.com/spf13/cobra"
 )
 
@@ -33,7 +34,7 @@ type (
 )
 
 const (
-	sockRaw      = "none"
+	sockRaw      = "raw"
 	sockAfpacket = "af_packet"
 	// sockPfring   = "pf_ring"
 )
@@ -59,7 +60,10 @@ var nodeCmd = &cobra.Command{
 		} else if len(questions) != 0 {
 			// ask the remainder of the questions
 			err := survey.Ask(questions, &info)
-			if err != nil {
+			if err == terminal.InterruptErr {
+				// no need to return an error if user quits with ctrl-c
+				return nil
+			} else if err != nil {
 				return err
 			}
 		}
@@ -68,7 +72,7 @@ var nodeCmd = &cobra.Command{
 		// if --output was specified write to that file instead
 		if filepath, err := cmd.Flags().GetString("output"); err == nil && filepath != "" {
 			var err error
-			out, err = os.OpenFile(filepath, os.O_WRONLY|os.O_TRUNC, 0664)
+			out, err = os.Create(filepath)
 			if err != nil {
 				return fmt.Errorf("could not open file: %s", filepath)
 			}
@@ -246,8 +250,8 @@ func qSocketType() *survey.Question {
 		Name: "socketType",
 		Prompt: &survey.Select{
 			Message: "What type of network socket do you want to use?",
-			Help: `Choosing a custom option here can help improve performance. However, you must have 
-    the corresponding driver, kernel module or support, and zeek plugin to use it.`,
+			Help: `Choosing the afpacket option here can improve performance. However, you must have 
+    the corresponding zeek plugin to use it.`,
 			Options: []string{sockRaw, sockAfpacket},
 			Default: sockRaw,
 		},

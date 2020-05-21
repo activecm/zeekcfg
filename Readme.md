@@ -68,10 +68,13 @@ zeekcfg --interface ens0 --interface ens1 --interface ens2 --processes 30 --pin 
 
 - [ ] Generator command for networks file that uses ethtool and IPv6
 - [ ] Find out if can use `lb_procs` with raw sockets (i.e. not with AF_Packet)
+- [ ] If `raw` is chosen for a network socket, don't offer lb_procs question.
+- [ ] Ensure built with `CGO_ENABLED=0 GOOS=linux go build -a -ldflags '-extldflags "-static"' .`
+- [ ] Ensure no debugging symbols `strip`
 
 ## Credits
 
 - [Bill Stearns](https://github.com/william-stearns) for his initial [node.cfg generator script](https://github.com/activecm/bro-install/blob/master/gen-node-cfg.sh)
-- [Doug Burks](https://github.com/Security-Onion-Solutions) for the Security Onion configuration wizard inspiration and the performance tuning tweaks in `/etc/network/interfaces`
+- [Doug Burks](https://github.com/dougburks) for the Security Onion configuration wizard inspiration and the performance tuning tweaks in `/etc/network/interfaces`
 - [J-Gras](https://github.com/J-Gras) for the [zeek-af_packet-plugin](https://github.com/J-Gras/zeek-af_packet-plugin#usage-with-zeekctl) and zeekctl usage examples
 
