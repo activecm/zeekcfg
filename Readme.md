@@ -69,8 +69,6 @@ zeekcfg --interface ens0 --interface ens1 --interface ens2 --processes 30 --pin 
 - [ ] Generator command for networks file that uses ethtool and IPv6
 - [ ] Find out if can use `lb_procs` with raw sockets (i.e. not with AF_Packet)
 - [ ] If `raw` is chosen for a network socket, don't offer lb_procs question.
-- [ ] Ensure built with `CGO_ENABLED=0 GOOS=linux go build -a -ldflags '-extldflags "-static"' .`
-- [ ] Ensure no debugging symbols `strip`
 
 ## Credits
 
