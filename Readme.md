@@ -47,7 +47,7 @@ zeekcfg --auto --interface eth1 --processes 4
 zeekcfg --interface ens0 --interface ens1 --interface ens2 --processes 30 --pin --type afpacket
 ```
 
-## Default Rationale
+## Defaults Rationale
 
 * Interfaces - Assumes that sniffing interfaces are in an UP state and do not have an IP address (neither v4 or v6). Additionally, interfaces matching common naming schemes (e.g. bridging, virtualization) are ignored by default.
 * Processes - The best advice I've seen is to dedicate one CPU core for the kernel and the rest for Zeek processes, one process per core. This means that besides one core for the kernel, one for the Zeek manager, and one for the Zeek proxy, the remaining cores will be allocated as worker processes for each interface.
@@ -63,12 +63,11 @@ zeekcfg --interface ens0 --interface ens1 --interface ens2 --processes 30 --pin 
 * The `af_packet_buffer_size=128*1024*1024` setting likely has some effect on performance, but I'm not sure in which cases it needs to be modified.
 * This generator assumes a single system cluster configuration. If you need to capture using multiple Zeek worker sensors then you will likely need to manually change much of the generated config.
 
-
 ## TODO
 
 - [ ] Generator command for networks file that uses ethtool and IPv6
-- [ ] Find out if can use `lb_procs` with raw sockets (i.e. not with AF_Packet)
-- [ ] If `raw` is chosen for a network socket, don't offer lb_procs question.
+- [ ] Allow using `lb_procs` with raw sockets (i.e. not with AF_Packet). [Example]](https://github.com/zeek/zeekctl/blob/master/testing/initialization/node-lb-interfaces.test).
+- [ ] When to have more than one proxy node?
 
 ## Credits
 
