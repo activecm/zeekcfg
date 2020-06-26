@@ -11,4 +11,4 @@ require (
 	golang.org/x/text v0.3.2 // indirect
 )
 
-replace github.com/AlecAivazis/survey/v2 => github.com/Zalgo2462/survey/v2 v2.0.8-0.20200624020207-2d2e06c55d31
+replace github.com/AlecAivazis/survey/v2 => github.com/Zalgo2462/survey/v2 v2.0.8-0.20200625180604-93e08bfe2dd3
