@@ -201,10 +201,10 @@ func qInterfaces() *survey.Question {
 		Name: "interfaces",
 		Prompt: &survey.MultiSelect{
 			Message: "Choose your capture interface(s):",
-			Help: `The interfaces you most likely want to use for capturing start 
-		with "eth" or "en" (e.g. eth0, eno1, enp1s0, enx78e7d1ea46da). You will generally NOT 
-		want to use loopback, bridged, or virtual interfaces (e.g. lo, br-c446eb08dde, veth582437d).
-		If you choose to select interfaces belonging to the latter category, proceed at your own risk.`,
+			Help: `The interfaces you most likely want to use for capturing start
+with "eth" or "en" (e.g. eth0, eno1, enp1s0, enx78e7d1ea46da). You will generally NOT
+want to use loopback, bridged, or virtual interfaces (e.g. lo, br-c446eb08dde, veth582437d).
+If you choose to select interfaces belonging to the latter category, proceed at your own risk.`,
 			Options:  displayNames,
 			Default:  suggestedNames,
 			PageSize: 20,
@@ -229,8 +229,8 @@ func qProcesses() *survey.Question {
 		Prompt: &survey.Input{
 			Message: "How many total Zeek processes do you want?",
 			Help: `You will generally get the best performance by making your total number of Zeek processes
-	one less than the number of CPU cores your system has. If your system is used for something
-	in addition to Zeek you may want to reduce the number of processes further.`,
+one less than the number of CPU cores your system has. If your system is used for something
+in addition to Zeek you may want to reduce the number of processes further.`,
 			Default: strconv.Itoa(int(suggestedProcesses())),
 		},
 		// Only numbers up to how many cores there are
@@ -250,8 +250,8 @@ func qSocketType() *survey.Question {
 		Name: "socketType",
 		Prompt: &survey.Select{
 			Message: "What type of network socket do you want to use?",
-			Help: `Choosing the afpacket option here can improve performance. However, you must have 
-    the corresponding zeek plugin to use it.`,
+			Help: `Choosing the afpacket option here can improve performance. However, you must have
+the corresponding zeek plugin to use it.`,
 			Options: []string{sockRaw, sockAfpacket},
 			Default: sockRaw,
 		},
