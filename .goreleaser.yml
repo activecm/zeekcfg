@@ -10,8 +10,11 @@ builds:
     env:
     - CGO_ENABLED=0
     goarch:
+    - arm
     - amd64
     - arm64
     ignore:
+    - goos: darwin
+      goarch: arm
     - goos: darwin
       goarch: arm64
